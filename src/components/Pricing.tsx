@@ -1,5 +1,8 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
+import { useState } from "react";
 
 const plans = [
     {
@@ -32,43 +35,87 @@ const plans = [
 ];
 
 export default function Pricing() {
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+
+    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (!e.currentTarget) return;
+        const div = e.currentTarget;
+        const rect = div.getBoundingClientRect();
+        setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+    };
+
     return (
-        <section className="py-20 bg-gray-50">
-            <div className="container mx-auto px-4">
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        料金プラン
+        <section className="py-24 bg-zinc-950 relative overflow-hidden">
+            {/* Background Effects */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-zinc-950 to-zinc-950" />
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/50 to-transparent" />
+
+            <div className="container mx-auto px-4 relative z-10">
+                <div className="text-center mb-20">
+                    <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
+                        料金<span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">プラン</span>
                     </h2>
-                    <p className="text-lg text-gray-600">
+                    <p className="text-xl text-zinc-400 font-medium">
                         明朗会計。必要な機能に合わせて選べます。
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
                     {plans.map((plan, index) => (
-                        <div key={index} className={`relative bg-white rounded-2xl p-8 shadow-lg border ${plan.popular ? 'border-main ring-2 ring-main/20' : 'border-gray-100'}`}>
+                        <div
+                            key={index}
+                            onMouseMove={handleMouseMove}
+                            className={`relative rounded-3xl p-8 border backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 group overflow-hidden ${plan.popular
+                                    ? 'bg-zinc-900/80 border-purple-500/50 shadow-2xl shadow-purple-500/20 scale-105 z-10'
+                                    : 'bg-zinc-900/40 border-white/10 hover:border-white/20 hover:bg-zinc-900/60'
+                                }`}
+                        >
+                            {/* Spotlight Effect */}
+                            <div
+                                className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
+                                style={{
+                                    background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(168, 85, 247, 0.15), transparent 40%)`,
+                                }}
+                            />
+
                             {plan.popular && (
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-main text-white text-xs font-bold px-3 py-1 rounded-full">
-                                    一番人気
+                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold px-4 py-1.5 rounded-full shadow-lg border border-white/20">
+                                    RECOMMENDED
                                 </div>
                             )}
-                            <h3 className="text-xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                            <div className="flex items-end gap-1 mb-4">
-                                <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                                <span className="text-gray-500 text-sm mb-1">{plan.unit}</span>
-                            </div>
-                            <p className="text-gray-500 text-sm mb-6">{plan.desc}</p>
 
-                            <ul className="space-y-3 mb-8">
+                            <div className="mb-8 relative z-10">
+                                <h3 className={`text-lg font-bold mb-2 ${plan.popular ? 'text-white' : 'text-zinc-300'}`}>
+                                    {plan.name}
+                                </h3>
+                                <div className="flex items-baseline gap-1">
+                                    <span className="text-4xl md:text-5xl font-black text-white tracking-tight">
+                                        {plan.price}
+                                    </span>
+                                    <span className="text-zinc-500 text-sm font-medium">{plan.unit}</span>
+                                </div>
+                                <p className="text-zinc-400 text-sm mt-4 leading-relaxed">
+                                    {plan.desc}
+                                </p>
+                            </div>
+
+                            <ul className="space-y-4 mb-8 relative z-10">
                                 {plan.features.map((feature, i) => (
-                                    <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
-                                        <Check className="w-4 h-4 text-green-500 shrink-0" />
+                                    <li key={i} className="flex items-start gap-3 text-sm text-zinc-300">
+                                        <div className={`mt-0.5 rounded-full p-0.5 ${plan.popular ? 'bg-purple-500/20 text-purple-400' : 'bg-zinc-800 text-zinc-500'}`}>
+                                            <Check className="w-3.5 h-3.5" />
+                                        </div>
                                         {feature}
                                     </li>
                                 ))}
                             </ul>
 
-                            <Button className={`w-full ${plan.popular ? 'bg-main hover:bg-main/90' : 'bg-gray-900 hover:bg-gray-800'}`}>
+                            <Button
+                                className={`w-full py-6 text-lg font-bold rounded-xl transition-all duration-300 relative z-10 ${plan.popular
+                                        ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40'
+                                        : 'bg-white/10 hover:bg-white/20 text-white border border-white/10'
+                                    }`}
+                            >
                                 {plan.cta}
                             </Button>
                         </div>

@@ -18,6 +18,8 @@ export const metadata: Metadata = {
   description: "画像・動画生成AIとコーディングAIを組み合わせて、広告制作〜配信までを一人で回せるようにする。",
 };
 
+import SmoothScroll from "@/components/SmoothScroll";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,7 +30,7 @@ export default function RootLayout({
       <body
         className={`${notoSansJP.variable} ${inter.variable} antialiased font-sans`}
       >
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

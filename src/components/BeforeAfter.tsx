@@ -1,82 +1,37 @@
-import { Check, X } from "lucide-react";
+
 
 export default function BeforeAfter() {
     return (
-        <section className="py-20 bg-gray-50">
+        <section className="py-24 bg-white relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-gray-50 via-white to-white -z-10" />
+
             <div className="container mx-auto px-4">
                 <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                        なぜ、AI広告なのか？
+                    <h2 className="text-3xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">
+                        なぜ、<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">AI広告</span>なのか？
                     </h2>
-                    <p className="text-lg text-gray-600">
+                    <p className="text-xl text-gray-600 font-medium">
                         従来の広告制作の「常識」を覆す、圧倒的なパフォーマンス。
                     </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                    {/* Traditional */}
-                    <div className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 opacity-80">
-                        <h3 className="text-xl font-bold text-gray-500 mb-6 flex items-center gap-2">
-                            <span className="bg-gray-200 text-gray-600 text-xs px-2 py-1 rounded">従来</span>
-                            一般的な広告制作
-                        </h3>
-                        <ul className="space-y-4">
-                            <li className="flex items-start gap-3">
-                                <X className="w-5 h-5 text-red-400 mt-1 shrink-0" />
-                                <div>
-                                    <p className="font-bold text-gray-700">コストが高い</p>
-                                    <p className="text-sm text-gray-500">バナー1枚 数万円〜、動画 数十万円〜</p>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <X className="w-5 h-5 text-red-400 mt-1 shrink-0" />
-                                <div>
-                                    <p className="font-bold text-gray-700">時間がかかる</p>
-                                    <p className="text-sm text-gray-500">依頼から納品まで2週間〜1ヶ月</p>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <X className="w-5 h-5 text-red-400 mt-1 shrink-0" />
-                                <div>
-                                    <p className="font-bold text-gray-700">ノウハウがたまらない</p>
-                                    <p className="text-sm text-gray-500">外注先に依存し、社内に知見が残らない</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                <div className="max-w-6xl mx-auto">
+                    <div className="relative rounded-3xl p-2 bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 shadow-2xl">
+                        <div className="absolute inset-0 bg-white/50 backdrop-blur-3xl rounded-3xl" />
+                        <div className="relative rounded-2xl overflow-hidden border border-white/50 shadow-inner">
+                            <img
+                                src="/before-after.png"
+                                alt="Before and After Comparison"
+                                className="w-full h-full object-cover"
+                            />
 
-                    {/* AI Ads */}
-                    <div className="bg-white p-8 rounded-2xl shadow-xl border-2 border-main/10 relative overflow-hidden">
-                        <div className="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
-                            RECOMMENDED
+                            {/* Overlay Badge */}
+                            <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-white/50 animate-bounce">
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 font-black text-lg">
+                                    COST DOWN 90%
+                                </span>
+                            </div>
                         </div>
-                        <h3 className="text-xl font-bold text-main mb-6 flex items-center gap-2">
-                            <span className="bg-main text-white text-xs px-2 py-1 rounded">New</span>
-                            AI広告.com
-                        </h3>
-                        <ul className="space-y-4">
-                            <li className="flex items-start gap-3">
-                                <Check className="w-5 h-5 text-green-500 mt-1 shrink-0" />
-                                <div>
-                                    <p className="font-bold text-gray-900">コスト 1/10 以下</p>
-                                    <p className="text-sm text-gray-600">月額定額で作り放題、または格安制作</p>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <Check className="w-5 h-5 text-green-500 mt-1 shrink-0" />
-                                <div>
-                                    <p className="font-bold text-gray-900">スピード 10倍</p>
-                                    <p className="text-sm text-gray-600">最短即日納品。テストを高速で回せる</p>
-                                </div>
-                            </li>
-                            <li className="flex items-start gap-3">
-                                <Check className="w-5 h-5 text-green-500 mt-1 shrink-0" />
-                                <div>
-                                    <p className="font-bold text-gray-900">資産になる</p>
-                                    <p className="text-sm text-gray-600">自社で回すスキルが身につき、最強の武器に</p>
-                                </div>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>

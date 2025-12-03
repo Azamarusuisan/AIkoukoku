@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
+import Gallery from "@/components/Gallery";
 import BeforeAfter from "@/components/BeforeAfter";
 import Services from "@/components/Services";
 import Tools from "@/components/Tools";
@@ -13,6 +14,7 @@ export default function Home() {
     <main className="min-h-screen bg-white">
       <Header />
       <Hero />
+      <Gallery />
       <BeforeAfter />
       <Services />
       <Tools />
